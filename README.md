@@ -1,1 +1,1 @@
-# mini-games-java
+# mini-exercises-java
