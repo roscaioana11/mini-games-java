@@ -64,8 +64,12 @@ public class Snake {
             map[OldPlayerY][OldPlayerX] = "[ ]";
             map[PlayerY][PlayerX] = "[P]";
 
-            //TODO In cazul in care Playerul ajunge la destinatie, Playerul castiga
-            //trebuie sa verific daca coordonatele Playerului sunt egale cu coordonatele Goal-ului, then break
+            //verific daca coordonatele Playerului sunt egale cu coordonatele Goal-ului, then break
+            //conditia de win
+            if(PlayerX == GoalX && PlayerY == GoalY){
+                System.out.println("You won!");
+                break;
+            }
         }
     }
 }
