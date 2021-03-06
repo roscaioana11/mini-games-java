@@ -14,16 +14,16 @@ public class Snake {
 
         Random spawn = new Random();
         //am plasat playerul random pe harta prin coordonatele i=Y si j=X
-        int PlayerX = spawn.nextInt(map[0].length);
-        int PlayerY = spawn.nextInt(map.length);
+        int playerX = spawn.nextInt(map[0].length);
+        int playerY = spawn.nextInt(map.length);
 
-        map[PlayerY][PlayerX] = "[P]";
+        map[playerY][playerX] = "[P]";
 
-        //destination/goal point spawns randomly on the map
-        int GoalX = spawn.nextInt(map[0].length);
-        int GoalY = spawn.nextInt(map.length);
+        //destination/goal point spawns randomly on the worldMap
+        int goalX = spawn.nextInt(map[0].length);
+        int goalY = spawn.nextInt(map.length);
 
-        map[GoalY][GoalX] = "[x]";
+        map[goalY][goalX] = "[x]";
 
         while(true){
             //ca harta sa fie printata de fiecare data cand playerul se misca
@@ -34,39 +34,39 @@ public class Snake {
                 System.out.println(""); //pt rand nou de printare, altfel se continua pe acelasi punct de la printul anterior
             }
             System.out.println("Use the keywords(U, D, L, R) to move the player: ");
-            int OldPlayerX = PlayerX;
-            int OldPlayerY = PlayerY;
+            int oldPlayerX = playerX;
+            int oldPlayerY = playerY;
             String move = read.nextLine();
 
             if(move.equals("U")){
-                PlayerY--;
-                if(PlayerY < 0){
-                    PlayerY = map.length - 1;
+                playerY--;
+                if(playerY < 0){
+                    playerY = map.length - 1;
                 }
             }else if(move.equals("D")){
-                PlayerY++;
-                if(PlayerY > map.length - 1){ //10 elemente in map care au indexul de la 0 -> 9
-                    PlayerY = 0;
+                playerY++;
+                if(playerY > map.length - 1){ //10 elemente in worldMap care au indexul de la 0 -> 9
+                    playerY = 0;
                 }
             }else if(move.equals("L")){
-                PlayerX--;
-                if(PlayerX < 0){
-                    PlayerX = map[0].length - 1;
+                playerX--;
+                if(playerX < 0){
+                    playerX = map[0].length - 1;
                 }
             }else if(move.equals("R")){
-                PlayerX++;
-                if(PlayerX > map[0].length - 1){
-                    PlayerX = 0;
+                playerX++;
+                if(playerX > map[0].length - 1){
+                    playerX = 0;
                 }
             }else{
                 System.out.println("Not the right keyword (U, D, L, R)");
             }
-            map[OldPlayerY][OldPlayerX] = "[ ]";
-            map[PlayerY][PlayerX] = "[P]";
+            map[oldPlayerY][oldPlayerX] = "[ ]";
+            map[playerY][playerX] = "[P]";
 
             //verific daca coordonatele Playerului sunt egale cu coordonatele Goal-ului, then break
             //conditia de win
-            if(PlayerX == GoalX && PlayerY == GoalY){
+            if(playerX == goalX && playerY == goalY){
                 System.out.println("You won!");
                 break;
             }
