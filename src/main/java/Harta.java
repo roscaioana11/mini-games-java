@@ -18,77 +18,13 @@ public class Harta {
             String pick = read.nextLine();
 
             if(pick.equals("1")){
-                int playerX = -1;
-                while(playerX == -1){
-                    System.out.println("x = ");
-                    playerX = readCoordinateX(read);
-                }
-                int playerY = -1;
-                while (playerY == -1){
-                    System.out.println("y = ");
-                    playerY = readCoordinateY(read);
-                }
-                read.nextLine();
-                String drawing = "";
-                while (drawing.equals("")){
-                    System.out.println("Pick '^' = mountain, '~' = water, ' ' = 'field'");
-                    drawing = readTile(read);
-                }
-                setTile(playerX,playerY,drawing);
+                changeATile(read);
             }else if(pick.equals("2")) {
                 resetMap();
             }else if(pick.equals("3")){
-                int playerX1 = -1;
-                while(playerX1 == -1){
-                    System.out.println("x1 = ");
-                    playerX1 = readCoordinateX(read);
-                }
-                int playerY1 = -1;
-                while (playerY1 == -1){
-                    System.out.println("y1 = ");
-                    playerY1 = readCoordinateY(read);
-                }
-                int playerX2 = -1;
-                while (playerX2 == -1){
-                    System.out.println("x2 = ");
-                    playerX2 = readCoordinateX(read);
-                }
-                int playerY2 = -1;
-                while (playerY2 == -1){
-                    System.out.println("y2 = ");
-                    playerY2 = readCoordinateY(read);
-                }
-                read.nextLine();
-                String drawing = "";
-                while(drawing.equals("")){
-                    System.out.println("tile = ");
-                    System.out.println("Pick '^' = mountain, '~' = water, ' ' = 'field'");
-                    drawing = readTile(read);
-                }
-                if(drawing.length() == 1 && playerX1 != -1 && playerY1 != -1
-                        && playerX2 != -1 && playerY2 != -1){ //verifica daca este in range-ul corect
-                    setRectangle(playerX1, playerY1, playerX2, playerY2, drawing);
-                }
+                changeRectangle(read);
             }else if(pick.equals("4")){
-                int playerX = -1;
-                while(playerX == -1){
-                    System.out.println("x = ");
-                    playerX = readCoordinateX(read);
-                }
-                int playerY = -1;
-                while (playerY == -1){
-                    System.out.println("y = ");
-                    playerY = readCoordinateY(read);
-                }
-                int radius = read.nextInt();
-
-                read.nextLine();
-                String drawing = "";
-                while (drawing.equals("")){
-                    System.out.println("Pick '^' = mountain, '~' = water, ' ' = 'field'");
-                    drawing = readTile(read);
-                }
-                setCircle(playerX, playerY, radius , drawing);
+                changeCircle(read);
             }else if(pick.equals("0")){
                 break;
             }else{
@@ -96,7 +32,6 @@ public class Harta {
             }
         }
         displayMap();
-        //TODO Refactor main
     }
 
     public static void resetMap(){
@@ -117,6 +52,82 @@ public class Harta {
         }
     }
 
+    public static void changeATile(Scanner read){ //Pick 1
+        int playerX = -1;
+        while(playerX == -1){
+            System.out.println("x = ");
+            playerX = readCoordinateX(read);
+        }
+        int playerY = -1;
+        while (playerY == -1){
+            System.out.println("y = ");
+            playerY = readCoordinateY(read);
+        }
+        read.nextLine();
+        String drawing = "";
+        while (drawing.equals("")){
+            System.out.println("Pick '^' = mountain, '~' = water, ' ' = 'field'");
+            drawing = readTile(read);
+        }
+        setTile(playerX,playerY,drawing);
+    }
+
+    public static void changeRectangle(Scanner read){ //Pick 3
+        int playerX1 = -1;
+        while(playerX1 == -1){
+            System.out.println("x1 = ");
+            playerX1 = readCoordinateX(read);
+        }
+        int playerY1 = -1;
+        while (playerY1 == -1){
+            System.out.println("y1 = ");
+            playerY1 = readCoordinateY(read);
+        }
+        int playerX2 = -1;
+        while (playerX2 == -1){
+            System.out.println("x2 = ");
+            playerX2 = readCoordinateX(read);
+        }
+        int playerY2 = -1;
+        while (playerY2 == -1){
+            System.out.println("y2 = ");
+            playerY2 = readCoordinateY(read);
+        }
+        read.nextLine();
+        String drawing = "";
+        while(drawing.equals("")){
+            System.out.println("tile = ");
+            System.out.println("Pick '^' = mountain, '~' = water, ' ' = 'field'");
+            drawing = readTile(read);
+        }
+        if(drawing.length() == 1 && playerX1 != -1 && playerY1 != -1
+                && playerX2 != -1 && playerY2 != -1){ //verifica daca este in range-ul corect
+            setRectangle(playerX1, playerY1, playerX2, playerY2, drawing);
+        }
+    }
+
+    public static void changeCircle(Scanner read){
+        int playerX = -1;
+        while(playerX == -1){
+            System.out.println("x = ");
+            playerX = readCoordinateX(read);
+        }
+        int playerY = -1;
+        while (playerY == -1){
+            System.out.println("y = ");
+            playerY = readCoordinateY(read);
+        }
+        int radius = read.nextInt();
+
+        read.nextLine();
+        String drawing = "";
+        while (drawing.equals("")){
+            System.out.println("Pick '^' = mountain, '~' = water, ' ' = 'field'");
+            drawing = readTile(read);
+        }
+        setCircle(playerX, playerY, radius , drawing);
+    }
+
     public static void setTile(int coordonataX, int coordonataY, String tile){
         worldMap[coordonataY][coordonataX] = tile;
     }
@@ -131,11 +142,7 @@ public class Harta {
 
     public static String readTile(Scanner read){
         String scan = read.nextLine();
-        if(scan.equals("^")){
-            return scan;
-        }else if(scan.equals("~")){
-            return scan;
-        }else if(scan.equals(" ")){
+        if(scan.equals("^") || scan.equals("~") || scan.equals(" ")){
             return scan;
         }else{
             System.out.println("Not the right choice (^, ~, ' ')");
