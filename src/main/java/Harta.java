@@ -45,14 +45,13 @@ public class Harta {
     public static void displayMap(){
         for(int i = 0; i < worldMap.length; i++){
             for (int j = 0; j < worldMap[0].length; j++){
-                //worldMap[i][j] = "~";
                 System.out.print(worldMap[i][j]);
             }
             System.out.println("");
         }
     }
 
-    public static void changeATile(Scanner read){ //Pick 1
+    public static void changeATile(Scanner read){
         int playerX = -1;
         while(playerX == -1){
             System.out.println("x = ");
@@ -72,7 +71,7 @@ public class Harta {
         setTile(playerX,playerY,drawing);
     }
 
-    public static void changeRectangle(Scanner read){ //Pick 3
+    public static void changeRectangle(Scanner read){
         int playerX1 = -1;
         while(playerX1 == -1){
             System.out.println("x1 = ");
@@ -101,7 +100,7 @@ public class Harta {
             drawing = readTile(read);
         }
         if(drawing.length() == 1 && playerX1 != -1 && playerY1 != -1
-                && playerX2 != -1 && playerY2 != -1){ //verifica daca este in range-ul corect
+                && playerX2 != -1 && playerY2 != -1){
             setRectangle(playerX1, playerY1, playerX2, playerY2, drawing);
         }
     }
@@ -173,13 +172,10 @@ public class Harta {
     public static void setCircle(int oX, int oY, int oR, String tile){
         for(int i = oY - oR + 1; i < oY + oR; i++){
             for(int j = oX - oR + 1; j < oX + oR; j++){
-//                double m = Math.atan2(oY - i, oX - j);
-//                double pointX = oR * Math.cos(m);
-//                double pointY = oR * Math.sin(m);
                 double deltaX = j - oX;
                 double deltaY = i - oY;
                 double squareDistance = deltaX * deltaX + deltaY * deltaY;
-                //if(oR * oR >= (oR * Math.cos(m) - oX) * (oR * Math.cos(m) - oX) + (oR * Math.sin(m) - oY) * (oR * Math.sin(m) - oY)){
+
                 if(oR * oR >= squareDistance){
                     setTile(j, i, tile);
                 }

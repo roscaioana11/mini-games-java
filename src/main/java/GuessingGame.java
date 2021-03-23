@@ -1,10 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
 
-/**
-* Regula: calculatorul alege un nr aleatoriu(random) iar jucatorul incearca sa ghiceasca nr
-* Dupa fiecare ghicire incorecta, calculatorul ii spune jucatorului daca nr generat este < sau > decat cel ghicit
- */
 public class GuessingGame {
     public static void main(String[] args) {
         Random random = new Random();

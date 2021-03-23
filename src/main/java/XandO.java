@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class XandO {
     public static void main(String[] args) {
-        String[][] map = new String[3][3]; // [3][3] - 3 elemente
+        String[][] map = new String[3][3];
         Scanner read = new Scanner(System.in);
 
         for(int i = 0; i < map.length; i++){
@@ -30,12 +30,12 @@ public class XandO {
                 map[playerX][playerY] = "o";
                 tura = 1;
             }
-            //counter pt X si O
+
             int counterX = 0;
             int counterO = 0;
-            //verificam coloanele
-            for(int i = 0; i < map.length; i++){ // i reprezinta X
-                for(int j = 0; j < map[0].length; j++){ //j reprezinta Y
+
+            for(int i = 0; i < map.length; i++){
+                for(int j = 0; j < map[0].length; j++){
                     if(map[i][j].equals("x")){
                         counterX++;
                     }else if(map[i][j].equals("o")){
@@ -52,7 +52,7 @@ public class XandO {
                 counterX = 0;
                 counterO = 0;
             }
-            //verificam randurile
+
             for(int i = 0; i < map.length; i++){
                 for(int j = 0; j < map[0].length; j++){
                     if(map[j][i].equals("x")){
@@ -71,7 +71,7 @@ public class XandO {
                 counterX = 0;
                 counterO = 0;
             }
-            //verificam prima diagonala
+
             for(int i = 0; i < map.length; i++){
                 if(map[i][i].equals("x")){
                     counterX++;
@@ -88,7 +88,7 @@ public class XandO {
             }
             counterX = 0;
             counterO = 0;
-            //verificam a2a diagonala
+
             for(int i = 0; i < map.length; i++){
                 if(map[i][map.length - 1 - i].equals("x")){
                     counterX++;
@@ -105,7 +105,7 @@ public class XandO {
             }
             counterX = 0;
             counterO = 0;
-            //verificam daca toata harta este plina
+
             int counter = 0;
             for (int i = 0; i < map.length; i++){
                 for(int j = 0; j < map[0].length; j++){
